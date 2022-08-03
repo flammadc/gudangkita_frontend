@@ -1,7 +1,7 @@
 import React from 'react'
 import { BsPerson } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
-const Topbar = () => {
+const Topbar = ({ setPopSidebar }) => {
      return (
           <nav className="fixed w-screen top-0 -z-10 sm:h-32 sm:pl-64 sm:px-8 px-5  py-2 flex items-center sm:justify-end  justify-between transition-all ease-linear duration-300">
                <GiHamburgerMenu className="sm:hidden sm:text-3xl cursor-pointer" onClick={() => setPopSidebar(true)} />

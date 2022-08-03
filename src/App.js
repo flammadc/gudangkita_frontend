@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Topbar } from './components/Topbar';
-import { Sidebar } from './components/Sidebar';
-import { Test } from './components/test';
+import Topbar from './components/Topbar';
+import Sidebar from './components/Sidebar';
 import { BsPerson } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BiCube } from "react-icons/bi";
@@ -37,8 +36,7 @@ function App() {
           <h1 className="">GudangKita</h1>
         </div>
       </nav> */}
-      {/* <div className={"sm:hidden fixed top-0 bottom-0 right-0 left-0 bg-slate-100 opacity-50 " + (popSidebar ? "block" : "hidden")} onClick={() => setPopSidebar(false)}></div> */}
-      <Test />
+      <div className={"sm:hidden fixed top-0 bottom-0 right-0 left-0 bg-slate-100 opacity-50 " + (popSidebar ? "block" : "hidden")} onClick={() => setPopSidebar(false)}></div>
       <Topbar setPopSidebar={setPopSidebar} />
       {/* <nav className="fixed w-screen top-0 -z-10 sm:h-32 sm:pl-64 sm:px-8 px-5  py-2 flex items-center sm:justify-end  justify-between transition-all ease-linear duration-300">
         <GiHamburgerMenu className="sm:hidden sm:text-3xl cursor-pointer" onClick={() => setPopSidebar(true)} />
