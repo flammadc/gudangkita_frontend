@@ -1,29 +1,51 @@
+import { useState, useEffect } from "react";
 import { BiCube } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoNotificationsOutline } from "react-icons/io5";
+import { IoChevronBackOutline } from "react-icons/io5";
 
 function App() {
+  const [popSidebar, setPopSidebar] = useState(false);
+  useEffect(() => {
+    const keyDownHandler = event => {
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
+
+        // 👇️ your logic here
+        setPopSidebar(false);
+      }
+       };
+
+    document.addEventListener('keydown', keyDownHandler);
+
+    // 👇️ clean up event listener
+    return () => {
+      document.removeEventListener('keydown', keyDownHandler);
+    };
+  }, []);
   return (
     <div className="relative">
-      <nav className="sm:w-64 sm:block hidden fixed top-0 bottom-0 left-0 sm:py-10 py-3 bg-secondary transition-all ease-linear duration-300">
-        <div className="flex text-stone-100 items-center justify-center gap-1 sm:text-2xl text-lg font-bold">
+      <nav className={"z-10 sm:w-64 w-1/4 sm:block sm:shadow-none shadow-2xl shadow-gray-600  fixed top-0 bottom-0 left-0 sm:py-10 py-3  bg-secondary transition-all ease-linear duration-300 " + (popSidebar ? "block" : "hidden")}>
+        <div className="flex text-stone-100 items-center justify-center gap-1 sm:text-2xl  text-xs font-bold">
           <BiCube />
           <h1 className="">GudangKita</h1>
         </div>
+        {/* <IoChevronBackOutline className={"sm:hidden block absolute mt-0.5 mr-0.5  top-0 right-0 z-10 text-stone-100 cursor-pointer "} onClick={() => setPopSidebar(false)} /> */}
       </nav>
+        <div className={"sm:hidden fixed top-0 bottom-0 right-0 left-0 bg-slate-100 opacity-50 " + (popSidebar ? "block" : "hidden")} onClick={() => setPopSidebar(false)}></div>
 
-      <nav className="fixed w-screen top-0 -z-10 h-32 sm:pl-64 px-8 flex items-center sm:justify-end  justify-between transition-all ease-linear duration-300">
+      <nav className="fixed w-screen top-0 -z-10 sm:h-32 sm:pl-64 sm:px-8 px-5  py-2 flex items-center sm:justify-end  justify-between transition-all ease-linear duration-300">
         <GiHamburgerMenu
-          className="sm:hidden text-3xl"
-          onClick={() => alert("ok")}
-          style={{ cursor: "pointer" }}
+          className="sm:hidden sm:text-3xl cursor-pointer"
+          onClick={() => setPopSidebar(true)}
         />
-        <div className="h-[76px] px-6 bg-white rounded-lg drop-shadow-[0_20px_70px_rgba(86,89,146,0.10)] flex items-center justify-center gap-3 ">
-          <BsPerson className="bg-slate-100 w-12 h-12 rounded-[50%] p-2" />
+        <div className="sm:h-[76px] sm:px-6 sm:bg-white rounded-lg drop-shadow-[0_20px_70px_rgba(86,89,146,0.10)] flex items-center justify-center sm:gap-3 ">
+          <BsPerson className="sm:bg-slate-100 bg-white p-1.5 sm:w-12 sm:h-12 w-8 h-8 rounded-[50%] sm:p-2 shadow" />
           <div className="flex flex-col">
-            <h1 className="text-[#2C3E50] font-bold text-lg">Ridho Mustaqim</h1>
-            <p className="text-[#BABEC6] font-light text-sm">Administrator</p>
+            <h1 className="text-[#2C3E50] font-bold sm:text-lg sm:block hidden">Ridho Mustaqim</h1>
+            <p className="text-[#BABEC6] font-light sm:text-sm sm:block hidden">Administrator</p>
           </div>
           {/* <IoNotificationsOutline className="bg-slate-100 w-12 h-12 rounded-[50%] p-3 ml-11" /> */}
         </div>
